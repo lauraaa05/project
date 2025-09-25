@@ -8,6 +8,14 @@ function App() {
 
   return (
     <>
+        <button onClick={() => {
+            fetch('https://server-restless-haze-5740.fly.dev')
+                .then(response => {
+                    console.log(response)
+                }).catch(e => {
+                    console.log(e)
+            })
+        }}>CLICK ME</button>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
