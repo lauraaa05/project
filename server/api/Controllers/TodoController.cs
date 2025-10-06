@@ -1,4 +1,8 @@
-﻿namespace api;
+﻿using efscaffold.Entities;
+using Infrastructure.Postgres.Scaffolding;
+using Microsoft.AspNetCore.Mvc;
+
+namespace api;
 
 [ApiController]
 public class TodoController(MyDbContext dbContext) : ControllerBase
@@ -17,16 +21,14 @@ public class TodoController(MyDbContext dbContext) : ControllerBase
     {
         var myTodo = new Todo()
         {
-            Description = "test",
-            Title = "Title test",
+            Description = dto.description,
+            Title = dto.title,
             Id = Guid.NewGuid().ToString(),
             Isdone = false,
-            Priority = 5
+            Priority = dto.priority
         };
         dbContext.Todos.Add(myTodo);
         dbContext.SaveChanges();
         return myTodo;
     }
 }
-
-public record CreateTodoDto(int priority, string title, string description);
